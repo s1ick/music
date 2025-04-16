@@ -1,0 +1,40 @@
+@import '/src/assets/styles/variables';
+
+.audio-player {
+  &__card {
+    padding: $spacing-medium;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 8px $color-shadow;
+    transition: box-shadow $transition-duration ease;
+    background-color: white;
+  }
+
+  &__card:hover {
+    box-shadow: 0 6px 12px $color-shadow-hover;
+  }
+
+  &__header {
+    margin-bottom: $spacing-small;
+  }
+
+  &__title {
+    font-size: $font-size-title;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: $color-text-secondary;
+    margin: 0;
+  }
+
+  &__audio {
+    width: 100%;
+    outline: none;
+  }
+
+  &__audio::-webkit-media-controls-panel {
+    background-color: $color-background;
+  }
+}
