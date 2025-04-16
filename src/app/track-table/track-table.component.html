@@ -1,0 +1,23 @@
+<div class="track-table">
+    <table class="track-table__table" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td class="track-table__cell" mat-cell *matCellDef="let track">{{ track.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td class="track-table__cell" mat-cell *matCellDef="let track">{{ track.title }}</td>
+      </ng-container>
+      <ng-container matColumnDef="fileName">
+        <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>File Name</th>
+        <td class="track-table__cell track-table__cell--filename" mat-cell *matCellDef="let track">{{ track.fileName }}</td>
+      </ng-container>
+      <tr class="track-table__header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr class="track-table__row"
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="trackSelected.emit(row)">
+      </tr>
+    </table>
+  </div>

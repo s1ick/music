@@ -1,0 +1,35 @@
+<header class="app-header">
+  <div class="app-header__toolbar">
+    <div class="app-header__title">Audio Track List</div>
+  </div>
+</header>
+
+<main class="app-container">
+  <div class="app-search">
+    <input
+      class="app-search__input"
+      (keyup)="applyFilter($event)"
+      placeholder="Search tracks"
+      #input
+    />
+    <mat-icon class="app-search__icon">search</mat-icon>
+  </div>
+
+  <app-track-table
+    [dataSource]="dataSource"
+    [displayedColumns]="displayedColumns"
+    (trackSelected)="selectTrack($event)"
+    (filterChanged)="applyFilter($event)"
+  ></app-track-table>
+
+  <div class="app-paginator">
+    <mat-paginator
+      [pageSizeOptions]="[5, 10]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <div class="app-player">
+    <app-audio-player [track]="selectedTrack"></app-audio-player>
+  </div>
+</main>
