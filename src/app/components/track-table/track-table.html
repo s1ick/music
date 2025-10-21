@@ -9,14 +9,37 @@
         <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
         <td class="track-table__cell" mat-cell *matCellDef="let track">{{ track.title }}</td>
       </ng-container>
+
+      <!-- Добавляем колонку duration -->
+      <ng-container matColumnDef="duration">
+        <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+        <td class="track-table__cell track-table__cell--duration" mat-cell *matCellDef="let track">
+          {{ formatDuration(track.duration) }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="fileName">
         <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef mat-sort-header>File Name</th>
         <td class="track-table__cell track-table__cell--filename" mat-cell *matCellDef="let track">{{ track.fileName }}</td>
       </ng-container>
+
+      <!-- Добавляем колонку actions если нужно -->
+      <ng-container matColumnDef="actions">
+        <th class="track-table__header-cell" mat-header-cell *matHeaderCellDef>Play</th>
+        <td class="track-table__cell track-table__cell--actions" mat-cell *matCellDef="let track">
+          <button mat-icon-button
+                  (click)="playTrack(track, $event)"
+                  [color]="isTrackSelected(track) ? 'primary' : ''">
+            <mat-icon>{{ isTrackSelected(track) ? 'pause' : 'play_arrow' }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <tr class="track-table__header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr class="track-table__row"
           mat-row
           *matRowDef="let row; columns: displayedColumns"
+          [class.track-table__row--selected]="isTrackSelected(row)"
           (click)="trackSelected.emit(row)">
       </tr>
     </table>

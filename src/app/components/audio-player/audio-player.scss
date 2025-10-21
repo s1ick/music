@@ -1,0 +1,41 @@
+@use '../../../assets/styles/variables' as vars;
+
+.audio-player {
+  &__card {
+    padding: vars.$spacing-medium;
+    border-radius: vars.$border-radius;
+    box-shadow: 0 4px 8px vars.$color-shadow;
+    transition: box-shadow vars.$transition-duration ease;
+    background-color: white;
+  }
+
+  &__card:hover {
+    box-shadow: 0 6px 12px vars.$color-shadow-hover;
+  }
+
+  &__header {
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__title {
+    font-size: vars.$font-size-title;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$color-text;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: vars.$color-text-secondary;
+    margin: 0;
+  }
+
+  &__audio {
+    width: 100%;
+    outline: none;
+  }
+
+  &__audio::-webkit-media-controls-panel {
+    background-color: vars.$color-background;
+  }
+
+}

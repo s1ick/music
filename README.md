@@ -1,65 +1,75 @@
-# Music Player Test Task for Unibell
+# **Music Player - Тестовое задание Angular**
 
-## Project Overview
+[![GitHub](https://img.shields.io/badge/GitHub-Repo-blue)](https://github.com/s1ick/music)
+[![Angular](https://img.shields.io/badge/Angular-20-red)](https://angular.io/)
 
-This is a test task implementation for Unibell company - a music player application built with Angular and Angular Material. The application displays a list of audio tracks in a sortable and paginated table, allows searching through tracks, and plays selected tracks in an embedded audio player.
+Современный аудиоплеер на Angular с реактивным программированием и Material Design.
 
-## Features
+## **📌 Технические требования (выполнены)**
 
-- **Track Listing**: Displays audio tracks in a Material table with sorting and pagination
-- **Search Functionality**: Filter tracks by any column
-- **Audio Playback**: Play selected tracks in an embedded audio player
-- **Responsive Design**: Works well on different screen sizes
-- **Modern UI**: Clean Material Design interface
+- **Standalone Components** - Современный подход без NgModules
+- **Reactive Programming** - Сигналы и RxJS для управления состоянием
+- **Material Design** - Единый стиль Angular Material компонентов
+- **Type Safety** - Полная TypeScript типизация
+- **Debounced Search** - Оптимизированный поиск с задержкой
+- **Server-Side Pagination** - Эффективная работа с большими данными
+- **Error Handling** - Централизованная обработка ошибок
 
-## Technologies Used
+## **🚀 Особенности реализации**
 
-- Angular 14
-- Angular Material
-- TypeScript
-- SCSS
+### **Архитектура**
+- Signal-based state management
+- Service layer с четким разделением ответственности
+- OnPush change detection для максимальной производительности
+- Computed signals для мемоизированных вычислений
 
-## Project Structure
+### **Пользовательский опыт**
+- Индикаторы загрузки и состояния ошибок
+- Адаптивный дизайн для мобильных устройств
+- Плавные переходы и hover-эффекты
+- Умный поиск с debounce 300ms
 
-```
-src/
-├── app/
-│   ├── audio-player/              # Audio player component
-│   ├── track-table/               # Track table component
-│   ├── models/                    # Data models
-│   ├── app.component.ts           # Main component
-│   └── app.module.ts              # Main module
-├── assets/                        # Static assets
-└── styles.scss                    # Global styles
-```
+## **🛠 Технологический стек**
 
-## Installation
+- **Angular** v20 (Standalone Components)
+- **Angular Material** для UI компонентов
+- **TypeScript** со строгой типизацией
+- **RxJS** для реактивного программирования
+- **SCSS** с CSS-переменными
+- **Signals** для управления состоянием
 
-1. Clone the repository:
+## **🚀 Установка и запуск**
+
 ```bash
+1. Клонировать репозиторий:
 git clone https://github.com/s1ick/music.git
 cd music
-```
 
-2. Install dependencies:
-```bash
+2. Установить зависимости:
 npm install
-```
 
-3. Run the development server:
-```bash
+3. Запустить development server:
 ng serve
-```
 
-4. Open your browser at `http://localhost:4200`
+4. Сборка production версии:
+ng build
 
-## Available Scripts
 
-- `ng serve` - Run development server
-- `ng build` - Build the project
-
-## Contact Information
-
-- **GitHub**: [s1ick](https://github.com/s1ick)
-- **Telegram**: [@estheticmadness](https://t.me/estheticmadness)
-- **Email**: [berkut89@list.ru](mailto:berkut89@list.ru)
+## ** 📂 Структура проекта**
+src/app/
+├── components/
+│   ├── track-table/           # Компонент таблицы треков
+│   └── audio-player/          # Компонент аудиоплеера
+├── services/
+│   ├── audio.service.ts       # Работа с аудиоданными
+│   ├── track-filter.service.ts # Фильтрация и пагинация
+│   └── app-state.service.ts   # Управление состоянием приложения
+├── models/
+│   └── audio-track.model.ts   # Модель данных трека
+├── constants/
+│   └── table-config.ts        # Конфигурация таблицы
+├── utils/
+│   └── formatters.ts          # Утилиты форматирования
+├── app.component.ts           # Главный компонент
+├── app.config.ts              # Конфигурация приложения
+└── main.ts                    # Точка входа

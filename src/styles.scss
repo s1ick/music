@@ -1,13 +1,40 @@
-/* styles.scss */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// Import Angular Material theming
+@use '@angular/material' as mat;
 
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+// Global styles
 html, body {
   height: 100%;
   margin: 0;
   box-sizing: border-box;
-  background: #f7f7f7;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  // Use Material 3 theme variables instead of hardcoded values
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Set color scheme
+  color-scheme: light;
+}

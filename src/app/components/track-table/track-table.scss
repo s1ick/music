@@ -1,0 +1,76 @@
+@use '../../../assets/styles/variables' as vars;
+
+.track-table {
+  box-shadow: 0 4px 8px vars.$color-shadow;
+  transition: box-shadow vars.$transition-duration ease;
+
+  &:hover {
+    box-shadow: 0 6px 12px vars.$color-shadow-hover;
+  }
+
+  &__table {
+    width: 100%;
+    border-radius: vars.$table-border-radius;
+    overflow: hidden;
+  }
+
+  &__header-cell {
+    font-weight: vars.$table-header-font-weight;
+    font-size: vars.$table-header-font-size;
+    color: vars.$table-header-color;
+    padding: vars.$table-cell-padding;
+  }
+
+  &__cell {
+    padding: vars.$table-cell-padding;
+
+    &--filename {
+      word-break: break-all;
+    }
+  }
+
+  &__row {
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(vars.$color-primary, 0.04);
+      transform: translateX(4px);
+    }
+
+    &:active {
+      background-color: rgba(vars.$color-primary, 0.08);
+    }
+  }
+    &.selected {
+      background-color: vars.$table-row-selected-bg;
+    }
+}
+
+.mat-column-id {
+  flex: 0 0 vars.$table-column-id-width;
+}
+
+.mat-column-title {
+  flex: 1 1 auto;
+}
+
+.mat-column-fileName {
+  flex: 2 1 auto;
+}
+
+.track-table {
+  &__row {
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(vars.$color-primary, 0.04);
+      transform: translateX(4px);
+    }
+
+    &:active {
+      background-color: rgba(vars.$color-primary, 0.08);
+    }
+  }
+}

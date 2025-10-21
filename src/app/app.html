@@ -1,0 +1,97 @@
+<!-- Error State -->
+@if (error()) {
+  <div class="app-error">
+    <mat-icon>error</mat-icon>
+    <span>{{ error() }}</span>
+    <button mat-icon-button (click)="clearError()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+}
+
+<!-- Loading State -->
+@if (isLoading()) {
+  <div class="app-loading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Loading tracks...</span>
+  </div>
+}
+
+@if (!isLoading()) {
+  <header class="app-header">
+    <div class="app-header__toolbar">
+      <div class="app-header__title">{{ title() }}</div>
+      <button mat-icon-button
+              (click)="reloadTracks()"
+              [disabled]="isLoading()"
+              title="Reload tracks">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-container">
+    <!-- Search -->
+    <div class="app-search">
+      <mat-form-field appearance="outline" class="app-search__field">
+        <mat-label>Search tracks</mat-label>
+        <input
+          matInput
+          #input
+          [value]="searchTerm()"
+          (input)="onSearch($event)"
+          placeholder="Search by title or filename"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+
+        @if (searchTerm()) {
+          <button matSuffix
+                  mat-icon-button
+                  (click)="clearSearch()"
+                  title="Clear search">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+    </div>
+
+    <!-- Track Table -->
+    @if (paginatedTracks().length > 0) {
+      <app-track-table
+        [dataSource]="dataSource"
+        [displayedColumns]="displayedColumns"
+        [selectedTrack]="selectedTrack()"
+        (trackSelected)="onTrackSelected($event)"
+      ></app-track-table>
+    } @else {
+      <div class="app-empty-state">
+        <mat-icon class="app-empty-state__icon">music_off</mat-icon>
+        <h3 class="app-empty-state__title">No tracks found</h3>
+        <p class="app-empty-state__description">
+          {{ searchTerm() ? 'Try adjusting your search criteria' : 'No tracks available' }}
+        </p>
+      </div>
+    }
+
+    <!-- Pagination -->
+    @if (totalTracks() > 0) {
+      <div class="app-paginator">
+        <mat-paginator
+          [length]="totalTracks()"
+          [pageSize]="pageSize()"
+          [pageIndex]="pageIndex()"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="onPageChange($event)"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    }
+
+    <!-- Audio Player -->
+    @if (selectedTrack()) {
+      <div class="app-player">
+        <app-audio-player [track]="selectedTrack()"></app-audio-player>
+      </div>
+    }
+  </main>
+}
